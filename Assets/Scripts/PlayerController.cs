@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed = 7; //Max move speed
     public float sprintSpeed = 15;
-    private float speed;
+
+    [SerializeField] private float speed;
 
     [Header("Ground Checker")]
     public Transform groundChecker;
