@@ -5,27 +5,33 @@ using UnityEngine.AI;
 
 public class BaseEnemy : MonoBehaviour
 {
-    private NavMeshAgent agent;
     private Transform player;
-    [SerializeField] private Vector3 target;
+    [SerializeField] private Vector3 targetPos;
 
-    [SerializeField] private float maxSpeed = 1f;
-    [SerializeField] private float maxAcceleration = 1f;
-    [SerializeField] private float prefDist = 5f;
+    [SerializeField] private Vector3 velocity = Vector3.zero;
+    [SerializeField] private float acceleration = 5f;
+
+    [SerializeField] private float maxSpeed = 2f;
+    [SerializeField] private float prefDist = 0f;
 
     protected void Awake() {
-        agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player").transform;
-        agent.acceleration = maxAcceleration;
-        agent.speed = maxSpeed;
-        agent.autoRepath = true;
-        agent.stoppingDistance = prefDist;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(player.position);
-        agent.SetDestination(player.position);
+        transform.LookAt(player);
+
+        Vector3 target = offset(player);
+        Debug.Log(target);
+        transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, acceleration, maxSpeed);
+    }
+
+    private Vector3 offset(Transform target){
+        Vector3 distanceVector = target.position - transform.position;
+        Vector3 distanceVectorNormalized = distanceVector.normalized;
+        Vector3 targetPosition = (distanceVectorNormalized * prefDist);
+        return targetPosition;
     }
 }
