@@ -14,6 +14,8 @@ public class ExplosiveBullet : MonoBehaviour
     Animator anim;
     public GameObject explosion;
 
+    [SerializeField] public float damage = 20;
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -52,6 +54,8 @@ public class ExplosiveBullet : MonoBehaviour
             //Destroy(gameObject);
             //play particle effect
             //damage enemy
+            EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
+            enemy?.damage(damage);
         }
     }
     

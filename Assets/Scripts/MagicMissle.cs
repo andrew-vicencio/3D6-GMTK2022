@@ -6,7 +6,7 @@ public class MagicMissle : MonoBehaviour
 {
     // Start is called before the first frame update
     
-
+    [SerializeField] public float damage = 20;
     public float speed = 20;
     public float travelTime = 30;
     public float rotationSpeed = 5;
@@ -60,6 +60,8 @@ public class MagicMissle : MonoBehaviour
             Destroy(gameObject);
             //play particle effect
             //damage enemy
+            EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
+            enemy?.damage(damage);
         }
     }
     

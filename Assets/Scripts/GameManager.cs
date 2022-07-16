@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    
-
     public void OnDeath() {
         Debug.Log("You lose");
     }
