@@ -20,5 +20,15 @@ public class DirectionBullet : MonoBehaviour
         //var z = transform.position.z + speed * Time.deltaTime;
         //transform.position = new Vector3(x,transform.position.y,0);
     }
+
+    void OnTriggerEnter(Collider collision)
+    {
+        Debug.Log("HIT!");
+        if(collision.gameObject.tag == "Enemy"){
+            Destroy(gameObject);
+            //play particle effect
+            //damage enemy
+        }
+    }
     
 }

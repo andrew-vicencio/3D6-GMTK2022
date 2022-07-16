@@ -13,15 +13,20 @@ public class ChangeDiceValue : MonoBehaviour
     [HideInInspector] public int currentValue = 1;
     private List<int> basicNumbers = new List<int>();
     private List<int> randomNumbers;
+
+    public float countdown = 30;
+    private float curCountdown = 0;
+    private bool once = true;
     // Start is called before the first frame update
     void Awake()
     {
+        curCountdown = countdown;
         basicNumbers.Add(1);
         basicNumbers.Add(2);
         basicNumbers.Add(3);
         //basicNumbers.Add(4);
-        //basicNumbers.Add(5);
-        //basicNumbers.Add(6);
+        basicNumbers.Add(5);
+        basicNumbers.Add(6);
         randomNumbers = new List<int>(Shuffle(basicNumbers));
         currentValue = randomNumbers[0];
         randomNumbers.RemoveAt(0);
@@ -31,6 +36,13 @@ public class ChangeDiceValue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(curCountdown > 0){
+            curCountdown -= Time.deltaTime;
+        }
+        else if(once){
+            newValue();
+            once = false;
+        }
         
         if(player.gameObject.activeSelf){
             playerAnim.SetInteger("Value",currentValue);
@@ -60,6 +72,8 @@ public class ChangeDiceValue : MonoBehaviour
     public void setValue(){
         currentValue = randomNumbers[0];
         randomNumbers.RemoveAt(0);
+        curCountdown = countdown;
+        once = true;
     }
 
     public List<int> Shuffle (List<int> shuffled){

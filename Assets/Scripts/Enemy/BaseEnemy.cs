@@ -25,6 +25,7 @@ public class BaseEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(player.position);
         agent.SetDestination(player.position);
     }
 }
