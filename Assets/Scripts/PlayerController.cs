@@ -365,8 +365,8 @@ public class PlayerController : MonoBehaviour
         }
         if (rigidBody.velocity.y < -0.3)
         {
-            //animator.SetBool("jump",false);
-            //animator.SetBool("fall",true);
+            animator.SetBool("jump",false);
+            animator.SetBool("fall",true);
             if(onLand){
                 spinAnimator.SetBool("airborne",true);
             }
@@ -377,6 +377,7 @@ public class PlayerController : MonoBehaviour
         else if (rigidBody.velocity.y > 0.3)
         {
             animator.SetBool("jump",true);
+            animator.SetBool("fall",false);
             if(onLand){
                 spinAnimator.SetBool("airborne",true);
             }
@@ -384,6 +385,7 @@ public class PlayerController : MonoBehaviour
         }
         else{
             animator.SetBool("jump",false);
+            animator.SetBool("fall",false);
             if(onLand){
                 spinAnimator.SetBool("airborne",false);
                 if(once){
