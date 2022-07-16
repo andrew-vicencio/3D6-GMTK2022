@@ -24,7 +24,7 @@ public class ChangeDiceValue : MonoBehaviour
         basicNumbers.Add(1);
         basicNumbers.Add(2);
         basicNumbers.Add(3);
-        //basicNumbers.Add(4);
+        basicNumbers.Add(4);
         basicNumbers.Add(5);
         basicNumbers.Add(6);
         randomNumbers = new List<int>(Shuffle(basicNumbers));

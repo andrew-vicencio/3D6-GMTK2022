@@ -23,6 +23,9 @@ public class MagicMissle : MonoBehaviour
                 target = obj;
             }
         }
+        if(target == null){
+            Destroy(gameObject);
+        }
         speed = speed+Random.Range(0.0f,2.0f);
         rotationSpeed = rotationSpeed+Random.Range(-3.0f,3.0f);
     }

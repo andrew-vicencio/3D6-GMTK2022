@@ -13,10 +13,15 @@ public class CameraShake : MonoBehaviour
 	public float decreaseFactor = 1.0f;
 	
 	Vector3 originalPos;
+
+	public float goalSize = 1.5f;
+
+	Camera cam;
 	
 	void Awake()
 	{
 		originalPos = transform.localPosition;
+		cam = GetComponent<Camera>();
 	}
 	
 	public void Shake(float duration,float amount)
@@ -28,6 +33,14 @@ public class CameraShake : MonoBehaviour
 
 	void Update()
 	{
+
+		if(cam.orthographicSize > goalSize+0.1f){
+			cam.orthographicSize -= 0.1f;
+		}
+		else if(cam.orthographicSize < goalSize-0.1f){
+			cam.orthographicSize += 0.1f;
+		}
+
 		if (shakeDuration > 0)
 		{
 			transform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
