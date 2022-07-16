@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HidePlayer : MonoBehaviour
 {
     public GameObject player;
     public CameraShake camShake;
     public ParticleSystem cloud;
+    public UnityEvent changeDieValue;
 
     public void hidePlayer(){
         player.SetActive(false);
@@ -26,6 +28,10 @@ public class HidePlayer : MonoBehaviour
 
     public void playParticleEffect(){
         cloud.Play();
+    }
+
+    public void changeValue(){
+        changeDieValue.Invoke();
     }
 
 }

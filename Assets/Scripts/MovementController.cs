@@ -13,6 +13,8 @@ public class MovementController : MonoBehaviour
     public float runSpeed = 20.0f;
     public float rotationSpeed = 5;
 
+    public Animator anim;
+
     void Start ()
     {
         body = GetComponent<Rigidbody>(); 
@@ -35,13 +37,20 @@ public class MovementController : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime *rotationSpeed);
         transform.rotation = Quaternion.Euler(0,transform.rotation.eulerAngles.y,0);
+        
+        if(body.velocity.x > 0.1 || body.velocity.z > 0.1 || body.velocity.x < -0.1 || body.velocity.z < -0.1){
+            anim.SetBool("Run",true);
+        }
+        else{
+            anim.SetBool("Run",false);
+        }
     }
 
     private void FixedUpdate()
     {  
         //move in direction of WASD
-        Vector2 inputs = new Vector2(horizontal * runSpeed, vertical * runSpeed);
-        body.velocity = new Vector3(inputs.x,0,inputs.y).normalized;
+        Vector2 inputs = new Vector2(horizontal, vertical).normalized * runSpeed;
+        body.velocity = new Vector3(inputs.x,0,inputs.y);
 
        
 
