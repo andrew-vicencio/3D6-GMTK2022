@@ -24,13 +24,15 @@ public class BaseEnemy : MonoBehaviour
         transform.LookAt(player);
 
         Vector3 target = offset(player);
-        transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, 1f / acceleration, maxSpeed);
+        transform.position  =Vector3.MoveTowards(transform.position, player.position,maxSpeed *Time.deltaTime);
+        //transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, 1f / acceleration, maxSpeed);
     }
 
     private Vector3 offset(Transform target){
         Vector3 distanceVector = target.position - transform.position;
         Vector3 distanceVectorNormalized = distanceVector.normalized;
-        Vector3 targetPosition = (distanceVectorNormalized * prefDist);
+        float magnitude = Vector3.Distance(target.position, transform.position);
+        Vector3 targetPosition = (distanceVectorNormalized * (magnitude - prefDist));
         return targetPosition;
     }
 }
