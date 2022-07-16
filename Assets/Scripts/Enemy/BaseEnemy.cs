@@ -24,8 +24,7 @@ public class BaseEnemy : MonoBehaviour
         transform.LookAt(player);
 
         Vector3 target = offset(player);
-        Debug.Log(target);
-        transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, acceleration, maxSpeed);
+        transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, 1f / acceleration, maxSpeed);
     }
 
     private Vector3 offset(Transform target){
