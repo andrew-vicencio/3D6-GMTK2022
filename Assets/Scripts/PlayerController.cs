@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem dust;
     public TrailRenderer trail;
     public ParticleSystem dash;
+    public ParticleSystem fire;
     private GameObject transformingInto;
     [HideInInspector] public bool isGhost = true;
     public int charReference;
@@ -158,7 +159,7 @@ public class PlayerController : MonoBehaviour
         //Float();
         BankDie();
         CameraFollowMe();
-        JumpOffWalls();
+        //JumpOffWalls();
         UseAbility();
         if(randomNumbers.Count <= 6){
             List<int> tempList = new List<int>(Shuffle(basicNumbers));
@@ -348,6 +349,7 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot(){
         if(Input.GetKeyDown(KeyCode.Return)){
+            fire.Play();
             Quaternion rot = transform.rotation;
             rot.eulerAngles =  new Vector3(0,0,-90);
             Instantiate(bullet,bulletSpot.position,rot);
