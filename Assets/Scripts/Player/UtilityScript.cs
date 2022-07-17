@@ -9,7 +9,9 @@ public class UtilityScript : MonoBehaviour
     MovementController mc;
 
     [Header("Charge")]
-    bool charge;
+    public Animator charge;
+    public ParticleSystem rage;
+    public float chargeCoolDown = 5f;
 
     [Header("Dodge Roll")]
     public Animator playerAnim;
@@ -23,7 +25,8 @@ public class UtilityScript : MonoBehaviour
     public ParticleSystem fire;
 
     [Header("Parry")]
-    bool parry;
+    public Animator parry;
+    public float parryCoolDown = 1f;
 
     [Header("Backstab")]
     public float maxDistance = 50f;
@@ -95,7 +98,7 @@ public class UtilityScript : MonoBehaviour
     }
 
     public void Parry(){
-
+        parry.SetTrigger("Parry");
     }
 
     public void BackStab(){

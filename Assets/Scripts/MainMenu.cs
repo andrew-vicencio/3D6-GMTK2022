@@ -9,6 +9,8 @@ public class MainMenu : MonoBehaviour
     Animator anim;
     public GameObject menuCanvas;
     public GameObject game;
+
+    public Animator hand;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,7 @@ public class MainMenu : MonoBehaviour
     public void Play(){
         anim.SetTrigger("MoveGame");
         menuCanvas.SetActive(false);
-        
+        hand.enabled = false;
 
     }
 
