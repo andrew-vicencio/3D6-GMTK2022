@@ -42844,6 +42844,7 @@ GameObject:
   - component: {fileID: 744155440}
   - component: {fileID: 744155441}
   - component: {fileID: 744155442}
+  - component: {fileID: 744155443}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -42898,6 +42899,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mc: {fileID: 769149287}
+--- !u!114 &744155443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744155439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b69d3f19f5630a4a9397fe0d6383e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 769149294}
+  particleSystem: {fileID: 0}
+  setBoolInAnimator: {fileID: 0}
 --- !u!1 &759597158
 GameObject:
   m_ObjectHideFlags: 0
@@ -42943,6 +42959,7 @@ GameObject:
   - component: {fileID: 769149290}
   - component: {fileID: 769149289}
   - component: {fileID: 769149293}
+  - component: {fileID: 769149294}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -43143,6 +43160,102 @@ MonoBehaviour:
   deathEffect: {fileID: 9029072697784793365, guid: 3753532467369934384c305c49daf320, type: 3}
   player: {fileID: 744155441}
   rawImage: {fileID: 442392763}
+--- !u!82 &769149294
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769149286}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.139
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &772793598
 GameObject:
   m_ObjectHideFlags: 0
@@ -68253,6 +68366,7 @@ GameObject:
   m_Component:
   - component: {fileID: 931785056}
   - component: {fileID: 931785057}
+  - component: {fileID: 931785058}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -68296,6 +68410,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &931785058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931785055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b69d3f19f5630a4a9397fe0d6383e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 769149294}
+  particleSystem: {fileID: 0}
+  setBoolInAnimator: {fileID: 0}
 --- !u!1 &936294001
 GameObject:
   m_ObjectHideFlags: 0
@@ -89490,9 +89619,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff7e471e96ee9d4cb25fafc3e265bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _run: 0
   deathMenuUI: {fileID: 1134523969}
   mc: {fileID: 769149287}
   sc: {fileID: 1852174314}
+  invuln: 0
 --- !u!4 &1233837574
 Transform:
   m_ObjectHideFlags: 0
@@ -97270,6 +97401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1766712913}
   - component: {fileID: 1766712914}
+  - component: {fileID: 1766712915}
   m_Layer: 0
   m_Name: Axe
   m_TagString: Untagged
@@ -97314,6 +97446,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1766712915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766712912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b69d3f19f5630a4a9397fe0d6383e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 769149294}
+  particleSystem: {fileID: 0}
+  setBoolInAnimator: {fileID: 0}
 --- !u!1 &1781382915
 GameObject:
   m_ObjectHideFlags: 0

@@ -518,10 +518,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 309e387ba73cc954aabbc2b637d00921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {x: 0, y: 0, z: 0}
+  rb: {fileID: 0}
   velocity: {x: 0, y: 0, z: 0}
   acceleration: 5
-  maxSpeed: 1
-  prefDist: 0
+  minDist: 1
+  maxSpeed: 1.5
+  steer: {x: 0, y: 0, z: 0}
 --- !u!195 &4076430483588952301
 NavMeshAgent:
   m_ObjectHideFlags: 0
