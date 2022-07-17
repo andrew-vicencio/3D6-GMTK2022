@@ -11,7 +11,10 @@ public class ScoreScript : MonoBehaviour
     public int killScore = 0;
     //public TMP_Text time;
     [SerializeField] private TextMeshProUGUI time;
+    [SerializeField] private TextMeshProUGUI timeUI;
     [SerializeField] private TextMeshProUGUI kill;
+
+    public GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +24,13 @@ public class ScoreScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        score += Time.deltaTime;
+        if(gameManager.running){
+            score += Time.deltaTime;
+        }
         TimeSpan span = TimeSpan.FromSeconds(score);
         string str = span.ToString(@"hh\:mm\:ss\:ff");
         time.text = str;
+        timeUI.text = str;
         kill.text = killScore.ToString();
         
     }
