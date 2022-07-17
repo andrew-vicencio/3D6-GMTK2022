@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class AttackScript : MonoBehaviour
 {
     public float curCoolDown = 0;
     public CameraShake camShake;
     public ChangeDiceValue dv;
+    private int previousValue = 0;
 
     [Header("Axe Attack")]
     public GameObject axe;
@@ -19,18 +22,18 @@ public class AttackScript : MonoBehaviour
     public GameObject bullet;
     public Transform bulletSpot;
     public ParticleSystem fire;
-    public float arrowCoolDown = 0.5f;
+    public float arrowCoolDown = 1.5f;
     public float arrowCamSize = 2.5f;
 
     [Header("Explosive Attack")]
     public GameObject explosiveBullet;
-    public float explosiveCoolDown = 1;
+    public float explosiveCoolDown = 1.5f;
     public ParticleSystem explo;
     public float exploCamSize = 1.5f;
 
     [Header("Knife Fan Attack")]
     public GameObject knifeBullet;
-    public float knifeCoolDoown = 1;
+    public float knifeCoolDoown = 0.5f;
     public ParticleSystem knifeP;
     public float knifeCamSize = 1.0f;
 
@@ -43,17 +46,27 @@ public class AttackScript : MonoBehaviour
 
     [Header("Magic Missile Attack")]
     public GameObject magicMissile;
-    public float magicCoolDown = 1;
+    public float magicCoolDown = 0.5f;
     private float burstCoolDown = 0.05f;
     private int misslesLaunched = 0;
     public ParticleSystem magicMis;
     public float magicCamSize = 1.5f;
+
+    [Header("UI")]
+    public TMP_Text cooldown;
+    public RawImage mouseButton;
+    public Texture onCooldown;
+    public Texture normal;
 
 
     
     // Update is called once per frame
     void Update()
     {
+        if(previousValue != dv.currentValue){
+            previousValue = dv.currentValue;
+            curCoolDown = 0;
+        }
         if(dv.currentValue == 1){
             camShake.goalSize = axeCamSize;
             
@@ -109,7 +122,19 @@ public class AttackScript : MonoBehaviour
         }
 
         if(curCoolDown > 0){
+            if(curCoolDown > 0.5){
+                mouseButton.texture = onCooldown;
+                cooldown.enabled = true;
+                mouseButton.color = new Color(1,1,1,0.4f);
+                int tempDown = (int)curCoolDown;
+                cooldown.text = tempDown.ToString();
+            }
             curCoolDown -= Time.deltaTime;
+        }
+        else{
+            mouseButton.texture = normal;
+            cooldown.enabled = false;
+            mouseButton.color = Color.white;
         }
         
     }
@@ -142,7 +167,7 @@ public class AttackScript : MonoBehaviour
         Quaternion rot =   Quaternion.Euler(0,transform.rotation.eulerAngles.y,-90);
         Instantiate(knifeBullet,bulletSpot.position,rot);
         curCoolDown = knifeCoolDoown;
-        camShake.Shake(.1f,0.1f);
+        //camShake.Shake(.1f,0.1f);
 
     }
 
@@ -165,6 +190,6 @@ public class AttackScript : MonoBehaviour
     void SwordCombo(){
         sword.SetTrigger("Swing");
         curCoolDown = swordCoolDown;
-        camShake.Shake(.1f,0.1f);
+        //camShake.Shake(.1f,0.1f);
     }
 }

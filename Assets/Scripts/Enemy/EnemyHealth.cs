@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    private float MAX_HEALTH = 100;
-    [SerializeField] private float currentHealth;
+    [SerializeField] private float MAX_HEALTH = 100;
+    private float currentHealth;
     private Slider healthbar;
     [SerializeField] private GameObject deathEffect;
 
