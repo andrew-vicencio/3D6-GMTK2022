@@ -22,12 +22,15 @@ public class BaseEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.running) {
+        if (gameManager.running && player != null) {
             transform.LookAt(player);
 
             Vector3 target = offset(player);
             transform.position = Vector3.MoveTowards(transform.position, player.position, maxSpeed * Time.deltaTime);
             //transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, 1f / acceleration, maxSpeed);
+        }
+        else if(player == null && gameManager.running){
+            player = GameObject.FindWithTag("Player").transform;
         }
     }
 

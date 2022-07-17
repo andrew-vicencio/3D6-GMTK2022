@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake() {
         _run = true;
-
+        Time.timeScale = 1f;
         GameObject game = GameObject.Find("Game");
         if (game != null) {
             game.SetActive(false);
@@ -31,7 +31,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void OnDeath() {
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
+        pause();
         deathMenuUI.SetActive(true);
     }
 

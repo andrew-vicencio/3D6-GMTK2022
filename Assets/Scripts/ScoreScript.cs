@@ -10,6 +10,8 @@ public class ScoreScript : MonoBehaviour
     public float score = 0.0f;
     public int killScore = 0;
     public TMP_Text time;
+
+    public GameManager manager;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +21,14 @@ public class ScoreScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        score += Time.deltaTime;
-        TimeSpan span = TimeSpan.FromSeconds(score);
-        string str = span.ToString(@"hh\:mm\:ss\:ff");
-        time.text = str;
+        if(manager.running){
+            score += Time.deltaTime;
+            TimeSpan span = TimeSpan.FromSeconds(score);
+            string str = span.ToString(@"hh\:mm\:ss\:ff");
+            time.text = str;
+
+        }
+
         
     }
 }   

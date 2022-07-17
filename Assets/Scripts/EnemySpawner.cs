@@ -32,23 +32,22 @@ public class EnemySpawner : MonoBehaviour
 
     public GameObject[] Enemy;
     
-    public bool death;
+    public GameManager manager;
 
     // Start is called before the first frame update
     void Start()
     {
-        tempTime = TimeBetweenWave;
+        tempTime = 0;
     }
 
     public void Lost(){
-        death = true;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if(!death){
+        if(manager.running){
             if(WaveActive){
                 tempTime -= Time.deltaTime;
                 if(tempTime <= 0){
@@ -61,7 +60,7 @@ public class EnemySpawner : MonoBehaviour
                         TempWaveStrength -= 1;
                     }
                     if(TempWaveStrength <= 0){
-                        TimeBetweenWave += 5;
+                        TimeBetweenWave += 0.5f;
                         WaveStrength += 2;
                         WaveActive = false;
                         tempTime = TimeBetweenWave;
