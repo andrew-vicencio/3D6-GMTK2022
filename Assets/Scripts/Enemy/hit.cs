@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeWeaponAttack : MonoBehaviour
+public class hit : MonoBehaviour
 {
-
-    public float damage = 50;
+    public float damage = 1;
 
     void OnTriggerEnter(Collider collision){
-        if(collision.gameObject.tag == "Enemy"){
+        if(collision.gameObject.tag == "Player"){
             Debug.Log("HIT");
             
-            EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
+            PlayerHealth enemy = collision.gameObject.GetComponent<PlayerHealth>();
             enemy?.damage(damage);
         }
     }

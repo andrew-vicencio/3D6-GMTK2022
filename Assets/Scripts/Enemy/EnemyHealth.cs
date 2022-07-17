@@ -14,8 +14,8 @@ public class EnemyHealth : MonoBehaviour
     }
 
     private void Start() {
-        Transform canvas = transform.Find("Canvas");
-        healthbar = canvas.Find("Slider").GetComponent<Slider>();
+        Transform canvas = transform.Find("UI");
+        healthbar = canvas.Find("Healthbar").GetComponent<Slider>();
         healthbar.maxValue = MAX_HEALTH;
         healthbar.value = MAX_HEALTH;
     }
