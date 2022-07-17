@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    private GameManager gm;
+
     [SerializeField] private UnityEvent m_Death = new UnityEvent();
 
     private float MAX_HEALTH = 3;
@@ -22,9 +24,13 @@ public class PlayerHealth : MonoBehaviour
         
         GameObject diceMan = GameObject.Find("DiceValueManager");
         changeDice = diceMan.GetComponent<ChangeDiceValue>();
+
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     public void damage(float damage = 1f) {
+        if (gm.invulnerable) return;
+
         currentHealth -= damage;
         hp.texture = images[(int)(currentHealth - 1)];
 
