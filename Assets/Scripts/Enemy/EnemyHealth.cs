@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     private float MAX_HEALTH = 100;
     [SerializeField] private float currentHealth;
     private Slider healthbar;
+    [SerializeField] private GameObject deathEffect;
 
     private void Awake() {
         currentHealth = MAX_HEALTH;
@@ -26,6 +27,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (currentHealth <= 0) {
             Debug.Log("Dead");
+            Instantiate(deathEffect,transform.position,Quaternion.identity);
             Destroy(gameObject);
         }
     }

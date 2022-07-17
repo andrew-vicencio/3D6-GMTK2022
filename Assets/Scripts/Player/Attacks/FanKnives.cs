@@ -35,7 +35,7 @@ public class FanKnives : MonoBehaviour
     {
         Debug.Log("HIT!");
         if(collision.gameObject.tag == "Enemy"){
-            Destroy(gameObject);
+            //Destroy(gameObject);
             //play particle effect
             //damage enemy
             EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();

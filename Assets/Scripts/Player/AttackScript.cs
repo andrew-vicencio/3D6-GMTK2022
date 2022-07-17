@@ -82,6 +82,7 @@ public class AttackScript : MonoBehaviour
         else{
             swordObj.SetActive(false);
         }
+
         if(Input.GetKey(KeyCode.Mouse0) && curCoolDown <= 0){
             if(dv.currentValue == 1){
                 SwingAxe();

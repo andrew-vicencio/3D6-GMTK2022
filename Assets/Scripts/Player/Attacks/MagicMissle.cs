@@ -32,6 +32,19 @@ public class MagicMissle : MonoBehaviour
 
     void Update() 
     {
+        if(target == null){
+            float distance = 9999;
+            foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Enemy")){
+                float tempDist = Vector3.Distance(obj.transform.position,transform.position);
+                if(tempDist < distance){
+                    distance = tempDist;
+                    target = obj;
+                }
+            }
+            if(target == null){
+                Destroy(gameObject);
+            }
+        }
         if(travelTime > 0){
             Vector3 moveTO = new Vector3(target.transform.position.x,transform.position.y,target.transform.position.z);
             //transform.position = Vector3.MoveTowards(transform.position,moveTO, speed * Time.deltaTime);
