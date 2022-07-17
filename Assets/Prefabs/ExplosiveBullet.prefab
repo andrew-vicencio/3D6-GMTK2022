@@ -316,9 +316,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  travelTime: 0.6
+  travelTime: 0.2
   explosionTime: 1
   explosion: {fileID: 7439620049569448127, guid: 95ecab2652084524aa31d433e2f56e09, type: 3}
+  damage: 5
 --- !u!95 &6454607887788292943
 Animator:
   serializedVersion: 3
@@ -19645,7 +19646,7 @@ SphereCollider:
   m_GameObject: {fileID: 6987070174331805512}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.50000024
   m_Center: {x: 0, y: 0, z: 0}
@@ -24464,6 +24465,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7439620049569448116}
+  - component: {fileID: 5473909274370602684}
   m_Layer: 0
   m_Name: ExplosiveBullet
   m_TagString: Untagged
@@ -24488,6 +24490,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -73.16, z: -90}
+--- !u!114 &5473909274370602684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7439620049569448127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef77274b756b4044a89030f56f99247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8630595380652562236
 GameObject:
   m_ObjectHideFlags: 0
@@ -24709,9 +24723,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  travelTime: 0.6
+  travelTime: 0.2
   explosionTime: 1
   explosion: {fileID: 7439620049569448127, guid: 95ecab2652084524aa31d433e2f56e09, type: 3}
+  damage: 5
 --- !u!95 &194907488947891861
 Animator:
   serializedVersion: 3
@@ -29591,6 +29606,14 @@ PrefabInstance:
     - target: {fileID: 3174038777565365569, guid: 3ab54656adb9c424c976c3d7ed06e7fe, type: 3}
       propertyPath: m_Name
       value: ExplosiveBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428028492033737276, guid: 3ab54656adb9c424c976c3d7ed06e7fe, type: 3}
+      propertyPath: damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428028492033737276, guid: 3ab54656adb9c424c976c3d7ed06e7fe, type: 3}
+      propertyPath: travelTime
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ab54656adb9c424c976c3d7ed06e7fe, type: 3}

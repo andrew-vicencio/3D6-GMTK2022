@@ -6,11 +6,11 @@ public class hit : MonoBehaviour
 {
     public float damage = 1;
 
-    void OnTriggerEnter(Collider collision){
-        if(collision.gameObject.tag == "Player"){
-            Debug.Log("HIT");
+    void OnCollisionEnter(Collision collision){
+        if(collision.collider.gameObject.tag == "Player"){
+            Debug.Log("HIT PLAYER");
             
-            PlayerHealth enemy = collision.gameObject.GetComponent<PlayerHealth>();
+            PlayerHealth enemy = collision.collider.gameObject.GetComponent<PlayerHealth>();
             enemy?.damage(damage);
         }
     }

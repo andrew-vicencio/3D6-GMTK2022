@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
 {
 
     public GameObject[] SpawnPoints;
+    private Transform player;
 
     public float TimeBetweenWave = 5;
 
@@ -32,23 +33,23 @@ public class EnemySpawner : MonoBehaviour
 
     public GameObject[] Enemy;
     
-    public bool death;
+    public GameManager manager;
 
     // Start is called before the first frame update
     void Start()
     {
-        tempTime = TimeBetweenWave;
+        player = GameObject.Find("Player").transform;
+        tempTime = 0;
     }
 
     public void Lost(){
-        death = true;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if(!death){
+        if(manager.running){
             if(WaveActive){
                 tempTime -= Time.deltaTime;
                 if(tempTime <= 0){
@@ -56,12 +57,12 @@ public class EnemySpawner : MonoBehaviour
                         int index = Random.Range(0, SpawnPoints.Length);
                         var tempX = SpawnPoints[index].transform.position.x + Random.Range(-SpawnXVariance,SpawnXVariance);
                         var tempZ = SpawnPoints[index].transform.position.z + Random.Range(-SpawnZVariance,SpawnZVariance);
-                        var spawnLoc = new Vector3(tempX,SpawnPoints[index].transform.position.y,tempZ);
+                        var spawnLoc = new Vector3(tempX, player.position.y ,tempZ);
                         GameObject enemy = Instantiate(Enemy[Random.Range(0,Enemy.Length)], spawnLoc,Quaternion.identity,transform);
                         TempWaveStrength -= 1;
                     }
                     if(TempWaveStrength <= 0){
-                        TimeBetweenWave += 5;
+                        TimeBetweenWave += 0.5f;
                         WaveStrength += 2;
                         WaveActive = false;
                         tempTime = TimeBetweenWave;

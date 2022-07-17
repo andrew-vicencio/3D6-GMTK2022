@@ -17,10 +17,14 @@ public class MovementController : MonoBehaviour
 
     public float dodgeSpeed = 10.0f;
 
+    public float chargeSpeed = 10.0f;
+
     public Animator anim;
     public Vector3 direction = new Vector3(0,0,0);
 
     public bool movementLocked = false;
+
+    public bool charging = false;
 
     Vector3 staticDir = new Vector3(0,0,0);
 
@@ -73,13 +77,18 @@ public class MovementController : MonoBehaviour
     private void FixedUpdate()
     {  
         //move in direction of WASD
-        if(!movementLocked){
+        if(!movementLocked && !charging){
             Vector2 inputs = new Vector2(horizontal, vertical).normalized * runSpeed;
             body.velocity = new Vector3(inputs.x,0,inputs.y);
         }
-        else{
+        else if(movementLocked){
             Vector2 force = new Vector2(staticDir.x,staticDir.z).normalized * dodgeSpeed;
             body.velocity = new Vector3(force.x,0,force.y);
+        }
+        else{
+            Vector2 force = new Vector2(direction.x,direction.z).normalized * chargeSpeed;
+            body.velocity = new Vector3(force.x,0,force.y);
+
         }
     }
 

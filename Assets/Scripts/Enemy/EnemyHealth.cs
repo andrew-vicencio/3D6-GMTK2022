@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    private float MAX_HEALTH = 100;
-    [SerializeField] private float currentHealth;
+    [SerializeField] private float MAX_HEALTH = 100;
+    private float currentHealth;
     private Slider healthbar;
+    [SerializeField] private GameObject deathEffect;
+
+    private ScoreScript score;
 
     private void Awake() {
         currentHealth = MAX_HEALTH;
+        score = GameObject.Find("GameManager").GetComponent<GameManager>().sc;
     }
 
     private void Start() {
@@ -25,7 +29,9 @@ public class EnemyHealth : MonoBehaviour
         healthbar.value = currentHealth;
 
         if (currentHealth <= 0) {
+            score.killScore ++;
             Debug.Log("Dead");
+            Instantiate(deathEffect,transform.position,Quaternion.identity);
             Destroy(gameObject);
         }
     }

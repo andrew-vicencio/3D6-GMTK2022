@@ -38,6 +38,7 @@ public class ChangeDiceValue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(player != null){
         if(curCountdown > 0){
             curCountdown -= Time.deltaTime;
         }
@@ -62,6 +63,9 @@ public class ChangeDiceValue : MonoBehaviour
             List<int> tempList = new List<int>(Shuffle(basicNumbers));
             randomNumbers.AddRange(tempList);
         }
+
+        }
+
     }
 
     public void newValue(){

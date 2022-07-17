@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 130ebe9ae46bb4a45a48014f0c1506b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 20
   speed: 6
   travelTime: 0.2
 --- !u!1 &5038103013770804848
@@ -438,6 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 130ebe9ae46bb4a45a48014f0c1506b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 20
   speed: 6
   travelTime: 0.2
 --- !u!1 &5140811792454729126
@@ -658,6 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 130ebe9ae46bb4a45a48014f0c1506b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 20
   speed: 6
   travelTime: 0.2
 --- !u!1 &7436748851755465868
@@ -878,6 +881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 130ebe9ae46bb4a45a48014f0c1506b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 20
   speed: 6
   travelTime: 0.2
 --- !u!1 &7439620049569448127
@@ -889,6 +893,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7439620049569448116}
+  - component: {fileID: 2140222947262410561}
   m_Layer: 0
   m_Name: Knifes
   m_TagString: Untagged
@@ -915,6 +920,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -73.16, z: -90}
+--- !u!114 &2140222947262410561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7439620049569448127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef77274b756b4044a89030f56f99247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8414964946493571198
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,6 +1150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 130ebe9ae46bb4a45a48014f0c1506b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 20
   speed: 6
   travelTime: 0.2
 --- !u!1001 &1087529818949102620
