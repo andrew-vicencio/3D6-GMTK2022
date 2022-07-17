@@ -10,8 +10,11 @@ public class EnemyHealth : MonoBehaviour
     private Slider healthbar;
     [SerializeField] private GameObject deathEffect;
 
+    private ScoreScript score;
+
     private void Awake() {
         currentHealth = MAX_HEALTH;
+        score = GameObject.Find("GameManager").GetComponent<GameManager>().sc;
     }
 
     private void Start() {
@@ -26,6 +29,7 @@ public class EnemyHealth : MonoBehaviour
         healthbar.value = currentHealth;
 
         if (currentHealth <= 0) {
+            score.killScore ++;
             Debug.Log("Dead");
             Instantiate(deathEffect,transform.position,Quaternion.identity);
             Destroy(gameObject);

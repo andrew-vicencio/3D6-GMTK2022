@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public bool running { get { return _run; }}
     public GameObject deathMenuUI;
     public MovementController mc;
+    public ScoreScript sc;
 
     private void Awake() {
         _run = true;
