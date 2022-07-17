@@ -9,8 +9,17 @@ public class EnemyHealth : MonoBehaviour
     private float currentHealth;
     private Slider healthbar;
     [SerializeField] private GameObject deathEffect;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip hurtSound;
 
     private ScoreScript score;
+
+    void PlaySound(AudioClip whichSound)
+    {
+        Debug.Log(audioSource);
+        audioSource.PlayOneShot(whichSound);
+        Debug.Log("Sound was played:" + whichSound);
+    }
 
     private void Awake() {
         currentHealth = MAX_HEALTH;
@@ -25,6 +34,7 @@ public class EnemyHealth : MonoBehaviour
     }
 
     public void damage(float damage = 25) {
+        //PlaySound(hurtSound);
         currentHealth -= damage;
         healthbar.value = currentHealth;
 

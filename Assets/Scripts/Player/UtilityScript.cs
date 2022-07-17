@@ -11,37 +11,45 @@ public class UtilityScript : MonoBehaviour
     MovementController mc;
     int previousValue;
 
+    AudioSource audioSource;
+
     [Header("Charge")]
     public Animator charge;
     public GameObject rage;
     public float chargeCoolDown = 5f;
     public float chargeLength = 2f;
     private float chargeLengthTemp = 0;
+    [SerializeField] AudioClip chargeAudio;
 
     [Header("Dodge Roll")]
     public Animator playerAnim;
     public ParticleSystem dodge;
     public float dodgeCoolDown = 3f;
+    [SerializeField] AudioClip dodgeAudio;
 
     [Header("Firewalk")]
     public GameObject explosive;
     public float teleportDist = 2f;
     public float teleCooldown = 6f;
     public ParticleSystem fire;
+    [SerializeField] AudioClip teleAudio;
 
     [Header("Parry")]
     public Animator parry;
     public float parryCoolDown = 1f;
+    [SerializeField] AudioClip parryAudio;
 
     [Header("Backstab")]
     public float maxDistance = 50f;
     public float distanceFromTarget = 1f;
     public float stabCoolDown = 5f;
     public ParticleSystem dust;
+    [SerializeField] AudioClip stabAudio;
 
     [Header("Repelling Force")]
     public GameObject repelForce;
     public float repelForceCooldown = 5f;
+    [SerializeField] AudioClip repelAudio;
 
     [Header("UI")]
     public TMP_Text cooldown;
@@ -51,8 +59,15 @@ public class UtilityScript : MonoBehaviour
 
     void Start(){
         mc = GetComponent<MovementController>();
+        audioSource = GetComponent<AudioSource>();
     }
 
+    void PlaySound(AudioClip whichSound)
+    {
+        Debug.Log(audioSource);
+        audioSource.PlayOneShot(whichSound);
+        Debug.Log("Sound was played:" + whichSound);
+    }
 
     // Update is called once per frame
     void Update()
@@ -111,6 +126,7 @@ public class UtilityScript : MonoBehaviour
     }
 
     public void Charge(){
+        PlaySound(chargeAudio);
         chargeLengthTemp = chargeLength;
         mc.charging = true;
         charge.SetBool("Charge",true);
@@ -118,12 +134,14 @@ public class UtilityScript : MonoBehaviour
     }
 
     public void DodgeRoll(){
+        PlaySound(dodgeAudio);
         playerAnim.SetTrigger("Dodge");
         dodge.Play();
         curCoolDown = dodgeCoolDown;
     }
 
     public void FireWalk(){
+        PlaySound(teleAudio);
         Quaternion rot =   Quaternion.Euler(0,transform.rotation.eulerAngles.y,-90);
         Vector3 movement = mc.direction.normalized;
         var obj = Instantiate(explosive,transform.position,rot);
@@ -135,11 +153,13 @@ public class UtilityScript : MonoBehaviour
     }
 
     public void Parry(){
+        PlaySound(parryAudio);
         parry.SetTrigger("Parry");
     }
 
     public void BackStab(){
         dust.Play();
+        PlaySound(stabAudio);
         //Debug.DrawRay(mc.transform.position,mc.direction,Color.white,10);
         Ray ray = new Ray(mc.transform.position, mc.direction);
         RaycastHit[] hits = Physics.RaycastAll(ray, maxDistance);
@@ -159,9 +179,11 @@ public class UtilityScript : MonoBehaviour
             transform.position = victim.transform.position + (distanceVec.normalized * distanceFromTarget);
             curCoolDown = stabCoolDown;
         }
+        victim.GetComponent<EnemyHealth>().damage(500);
     }
 
     public void RepellingForce(){
+        PlaySound(repelAudio);
         repelForce.SetActive(true);
         curCoolDown = repelForceCooldown;
     }
