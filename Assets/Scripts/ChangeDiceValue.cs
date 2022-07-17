@@ -18,6 +18,9 @@ public class ChangeDiceValue : MonoBehaviour
     public float countdown = 30;
     private float curCountdown = 0;
     private bool once = true;
+
+    public float MAX_INVULN = 2f;
+    private float invulnCD = 0f;
     // Start is called before the first frame update
     void Awake()
     {
@@ -39,31 +42,37 @@ public class ChangeDiceValue : MonoBehaviour
     void Update()
     {
         if(player != null){
-        if(curCountdown > 0){
-            curCountdown -= Time.deltaTime;
-        }
-        else if(once){
-            newValue();
-            once = false;
-        }
-        
-        if(player.gameObject.activeSelf){
-            playerAnim.SetInteger("Value",currentValue);
-        }
-        if(hand.gameObject.activeSelf){
-            handCubeAnim.SetInteger("Value",currentValue);
-        }
-        
-        //on spacebar for testing purposes
-        if(Input.GetKeyDown(KeyCode.Space)){
-            newValue();
-        }
-        //if our list of random numbers is less than six append new list
-        if(randomNumbers.Count <= 6){
-            List<int> tempList = new List<int>(Shuffle(basicNumbers));
-            randomNumbers.AddRange(tempList);
+            if(curCountdown > 0){
+                curCountdown -= Time.deltaTime;
+            }
+            else if(once){
+                newValue();
+                once = false;
+            }
+            
+            if(player.gameObject.activeSelf){
+                playerAnim.SetInteger("Value",currentValue);
+            }
+            if(hand.gameObject.activeSelf){
+                handCubeAnim.SetInteger("Value",currentValue);
+            }
+            
+            //on spacebar for testing purposes
+            if(Input.GetKeyDown(KeyCode.Space)){
+                newValue();
+            }
+            //if our list of random numbers is less than six append new list
+            if(randomNumbers.Count <= 6){
+                List<int> tempList = new List<int>(Shuffle(basicNumbers));
+                randomNumbers.AddRange(tempList);
+            }
         }
 
+        if (once && gameManager.invulnerable) {
+            if (invulnCD <= 0) {
+                gameManager.mortal();
+            }
+            invulnCD -= Time.deltaTime;
         }
 
     }
@@ -80,6 +89,9 @@ public class ChangeDiceValue : MonoBehaviour
         randomNumbers.RemoveAt(0);
         curCountdown = countdown;
         once = true;
+        
+        gameManager.immortal();
+        invulnCD = MAX_INVULN;
         
         gameManager.unpause();
     }

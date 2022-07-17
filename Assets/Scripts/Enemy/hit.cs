@@ -10,8 +10,8 @@ public class hit : MonoBehaviour
         if(collision.collider.gameObject.tag == "Player"){
             Debug.Log("HIT PLAYER");
             
-            PlayerHealth enemy = collision.collider.gameObject.GetComponent<PlayerHealth>();
-            enemy?.damage(damage);
+            PlayerHealth player = collision.collider.gameObject.GetComponent<PlayerHealth>();
+            player?.damage(damage);
         }
     }
 }
