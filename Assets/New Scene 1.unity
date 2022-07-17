@@ -27025,6 +27025,7 @@ GameObject:
   - component: {fileID: 442392760}
   - component: {fileID: 442392762}
   - component: {fileID: 442392761}
+  - component: {fileID: 442392763}
   m_Layer: 0
   m_Name: RawImage
   m_TagString: Untagged
@@ -27086,6 +27087,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 442392759}
   m_CullTransparentMesh: 1
+--- !u!95 &442392763
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442392759}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cf124f5fdd21ada46806188ffa52b64e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &443829129
 GameObject:
   m_ObjectHideFlags: 0
@@ -43121,6 +43141,8 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 0c2beb688cc5aef4cb448d12fb656578, type: 3}
   - {fileID: 2800000, guid: 703ab06a91a1f904d8cdbd2cde9b259f, type: 3}
   deathEffect: {fileID: 9029072697784793365, guid: 3753532467369934384c305c49daf320, type: 3}
+  player: {fileID: 744155441}
+  rawImage: {fileID: 442392763}
 --- !u!1 &772793598
 GameObject:
   m_ObjectHideFlags: 0
