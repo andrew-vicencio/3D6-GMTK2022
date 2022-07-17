@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
+    private GameManager gameManager;
+
     Rigidbody body;
     [SerializeField] Camera cam;
 
@@ -26,6 +28,10 @@ public class MovementController : MonoBehaviour
 
     public ChangeDiceValue dv;
 
+    private void Awake() {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
     void Start ()
     {
         body = GetComponent<Rigidbody>(); 
@@ -33,6 +39,10 @@ public class MovementController : MonoBehaviour
 
     void Update ()
     {
+        if (!gameManager.running) {
+            return;
+        }
+
         if(dv.currentValue != 2 && movementLocked){
             movementLocked = false;
 

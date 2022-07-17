@@ -14,16 +14,23 @@ public class PlayerHealth : MonoBehaviour
     public RawImage hp;
     public Texture[] images;
 
+    private ChangeDiceValue changeDice;
+
     private void Awake() {
         currentHealth = MAX_HEALTH;
         hp.texture = images[(int)(currentHealth - 1)];
+        
+        GameObject diceMan = GameObject.Find("DiceValueManager");
+        changeDice = diceMan.GetComponent<ChangeDiceValue>();
     }
 
     public void damage(float damage = 1f) {
         currentHealth -= damage;
         hp.texture = images[(int)(currentHealth - 1)];
 
-        if (currentHealth <= 0) {
+        if (currentHealth > 0) {
+            changeDice.newValue();
+        } else {
             m_Death.Invoke();
         }
     }
