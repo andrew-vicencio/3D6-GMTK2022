@@ -46,7 +46,7 @@ public class BaseEnemy : MonoBehaviour
         else if(player == null && gameManager.running){
             player = GameObject.FindWithTag("Player").transform;
         }
-
+    }
     private void LateUpdate() {
         rb.velocity += steer * Time.deltaTime;
         if (rb.velocity.magnitude < maxSpeed) {
@@ -54,5 +54,5 @@ public class BaseEnemy : MonoBehaviour
         }
         steer = Vector3.zero;
     }
-}
+
 }
