@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class BaseEnemy : MonoBehaviour
 {
     private Transform player;
-    [SerializeField] private Vector3 targetPos;
+    private GameManager gameManager;
 
     [SerializeField] private Vector3 velocity = Vector3.zero;
     [SerializeField] private float acceleration = 5f;
@@ -16,16 +16,19 @@ public class BaseEnemy : MonoBehaviour
 
     protected void Awake() {
         player = GameObject.FindWithTag("Player").transform;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(player);
+        if (gameManager.running) {
+            transform.LookAt(player);
 
-        Vector3 target = offset(player);
-        transform.position = Vector3.MoveTowards(transform.position, player.position, maxSpeed * Time.deltaTime);
-        //transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, 1f / acceleration, maxSpeed);
+            Vector3 target = offset(player);
+            transform.position = Vector3.MoveTowards(transform.position, player.position, maxSpeed * Time.deltaTime);
+            //transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, 1f / acceleration, maxSpeed);
+        }
     }
 
     private Vector3 offset(Transform target){

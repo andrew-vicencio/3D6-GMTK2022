@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChangeDiceValue : MonoBehaviour
 {
+    public GameManager gameManager;
     public GameObject player;
     public GameObject hand;
 
@@ -20,6 +21,7 @@ public class ChangeDiceValue : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         curCountdown = countdown;
         basicNumbers.Add(1);
         basicNumbers.Add(2);
@@ -63,10 +65,10 @@ public class ChangeDiceValue : MonoBehaviour
     }
 
     public void newValue(){
+        gameManager.pause();
+
         hand.SetActive(true);
         hand.transform.position = player.transform.position;
-        
-
     }
 
     public void setValue(){
@@ -74,10 +76,12 @@ public class ChangeDiceValue : MonoBehaviour
         randomNumbers.RemoveAt(0);
         curCountdown = countdown;
         once = true;
+        
+        gameManager.unpause();
     }
 
     public List<int> Shuffle (List<int> shuffled){
-        var rng = new System.Random();  
+        var rng = new System.Random();
         int n = shuffled.Count;  
         while (n > 1) {  
             n--;  
