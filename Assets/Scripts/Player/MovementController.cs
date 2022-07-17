@@ -13,7 +13,18 @@ public class MovementController : MonoBehaviour
     public float runSpeed = 20.0f;
     public float rotationSpeed = 5;
 
+    public float dodgeSpeed = 10.0f;
+
     public Animator anim;
+    public Vector3 direction = new Vector3(0,0,0);
+
+    public bool movementLocked = false;
+
+    Vector3 staticDir = new Vector3(0,0,0);
+
+    public Vector3 targetPos = new Vector3(0,0,0);
+
+    public ChangeDiceValue dv;
 
     void Start ()
     {
@@ -22,18 +33,21 @@ public class MovementController : MonoBehaviour
 
     void Update ()
     {
+        if(dv.currentValue != 2 && movementLocked){
+            movementLocked = false;
+
+        }
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical"); 
         var cursorPos = Input.mousePosition;
         var ray = cam.ScreenPointToRay(cursorPos);
         int layer_mask = LayerMask.GetMask("Ground");
-        Vector3 targetPos = new Vector3(0,0,0);
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit, Mathf.Infinity, layer_mask))
         {
             targetPos = new Vector3(hit.point.x,transform.position.y,hit.point.z);
         }
-        Vector3 direction = targetPos - transform.position;
+        direction = targetPos - transform.position;
         Quaternion rotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime *rotationSpeed);
         transform.rotation = Quaternion.Euler(0,transform.rotation.eulerAngles.y,0);
@@ -49,12 +63,23 @@ public class MovementController : MonoBehaviour
     private void FixedUpdate()
     {  
         //move in direction of WASD
-        Vector2 inputs = new Vector2(horizontal, vertical).normalized * runSpeed;
-        body.velocity = new Vector3(inputs.x,0,inputs.y);
+        if(!movementLocked){
+            Vector2 inputs = new Vector2(horizontal, vertical).normalized * runSpeed;
+            body.velocity = new Vector3(inputs.x,0,inputs.y);
+        }
+        else{
+            Vector2 force = new Vector2(staticDir.x,staticDir.z).normalized * dodgeSpeed;
+            body.velocity = new Vector3(force.x,0,force.y);
+        }
+    }
 
-       
+    public void lockMovement(){
+        movementLocked = true;
+        staticDir = direction;
+    }
 
-
+    public void movementUnlocked(){
+        movementLocked = false;
     }
 
 }
