@@ -453,6 +453,7 @@ GameObject:
   - component: {fileID: 4076430483588952298}
   - component: {fileID: 4076430483588952301}
   - component: {fileID: 110200085028573274}
+  - component: {fileID: 5018815990470189531}
   m_Layer: 0
   m_Name: BasicEnemy 1
   m_TagString: Enemy
@@ -555,9 +556,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797c1ba57a9ba7d4f9d3e7ed44d6fe49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
+  MAX_HEALTH: 100
   deathEffect: {fileID: 9029072697784793365, guid: 40eb8f6c6921ffc46a828695bbdc3f15, type: 3}
-  hurtEffect: {fileID: 2998686169914882202, guid: 54686a7ebb117aa4bbd388bb67aaa368, type: 3}
+--- !u!114 &5018815990470189531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4076430483588952310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 080ecce2fee1d1c4bb4c7c1ed5e7fca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!1001 &4076430482725368677
 PrefabInstance:
   m_ObjectHideFlags: 0

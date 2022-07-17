@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     private bool _run;
     public bool running { get { return _run; }}
     public GameObject deathMenuUI;
+    public MovementController mc;
 
     private void Awake() {
         _run = true;
@@ -20,10 +21,12 @@ public class GameManager : MonoBehaviour
 
     public void pause() {
         _run = false;
+        mc.enabled = false;
     }
 
     public void unpause() {
         _run = true;
+        mc.enabled = true;
     }
 
     public void OnDeath() {

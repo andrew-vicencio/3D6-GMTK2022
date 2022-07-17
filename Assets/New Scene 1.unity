@@ -87970,6 +87970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathMenuUI: {fileID: 0}
+  mc: {fileID: 769149287}
 --- !u!4 &1233837574
 Transform:
   m_ObjectHideFlags: 0
