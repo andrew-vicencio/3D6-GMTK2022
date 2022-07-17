@@ -8,34 +8,46 @@ public class BaseEnemy : MonoBehaviour
     private Transform player;
     private GameManager gameManager;
 
-    [SerializeField] private Vector3 velocity = Vector3.zero;
-    [SerializeField] private float acceleration = 5f;
+    [SerializeField] Vector3 target;
+    [SerializeField] private Rigidbody rb;
 
+    [SerializeField] private Vector3 velocity = Vector3.zero;
+    [SerializeField] private float acceleration = 2f;
+
+    [SerializeField] private float minDist = 1;
     [SerializeField] private float maxSpeed = 2f;
-    [SerializeField] private float prefDist = 0f;
+
+    [SerializeField] private Vector3 steer = Vector3.zero;
 
     protected void Awake() {
-        player = GameObject.FindWithTag("Player").transform;
+        player = GameObject.Find("Player").transform;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (gameManager.running) {
-            transform.LookAt(player);
+    void Update() {
+    // {
+    //     if (gameManager.running) {
+    //         transform.LookAt(player);
 
-            Vector3 target = offset(player);
-            transform.position = Vector3.MoveTowards(transform.position, player.position, maxSpeed * Time.deltaTime);
-            //transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, 1f / acceleration, maxSpeed);
-        }
+    //         if (Vector3.Distance(player.position, transform.position) >= minDist) {
+    //             transform.position = Vector3.MoveTowards(transform.position, player.position, maxSpeed * Time.deltaTime);
+    //         } else if (Vector3.Distance(player.position, transform.position) < minDist) {
+    //             transform.position = Vector3.MoveTowards(transform.position, transform.forward * -1, maxSpeed * Time.deltaTime);
+    //         }
+    //         // transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, 1f / acceleration, maxSpeed);
+    //     }
+        Vector3 desired = (player.position - transform.position).normalized * maxSpeed;
+        desired.y = 0;
+        steer = (desired - rb.velocity).normalized * maxSpeed;
     }
 
-    private Vector3 offset(Transform target){
-        Vector3 distanceVector = target.position - transform.position;
-        Vector3 distanceVectorNormalized = distanceVector.normalized;
-        float magnitude = Vector3.Distance(target.position, transform.position);
-        Vector3 targetPosition = (distanceVectorNormalized * (magnitude - prefDist));
-        return targetPosition;
+    private void LateUpdate() {
+        rb.velocity += steer * Time.deltaTime;
+        if (rb.velocity.magnitude < maxSpeed) {
+            rb.velocity = rb.velocity.normalized * maxSpeed;
+        }
+        steer = Vector3.zero;
     }
 }
