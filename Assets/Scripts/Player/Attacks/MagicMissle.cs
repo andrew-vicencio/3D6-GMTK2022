@@ -10,11 +10,13 @@ public class MagicMissle : MonoBehaviour
     public float speed = 20;
     public float travelTime = 30;
     public float rotationSpeed = 5;
-
+    AudioSource audioSource;
+    [SerializeField] private AudioClip hurtSound;
     GameObject target;
 
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         float distance = 9999;
         foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Enemy")){
             float tempDist = Vector3.Distance(obj.transform.position,transform.position);
@@ -28,6 +30,12 @@ public class MagicMissle : MonoBehaviour
         }
         speed = speed+Random.Range(0.0f,2.0f);
         rotationSpeed = rotationSpeed+Random.Range(-3.0f,3.0f);
+    }
+    void PlaySound(AudioClip whichSound)
+    {
+        Debug.Log(audioSource);
+        audioSource.PlayOneShot(whichSound);
+        Debug.Log("Sound was played:" + whichSound);
     }
 
     void Update() 
@@ -71,6 +79,8 @@ public class MagicMissle : MonoBehaviour
         Debug.Log("HIT!");
         if(collision.gameObject.tag == "Enemy"){
             Destroy(gameObject);
+            audioSource = gameObject.GetComponent<AudioSource>();
+            PlaySound(hurtSound);
             //play particle effect
             //damage enemy
             EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();

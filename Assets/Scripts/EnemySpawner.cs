@@ -58,6 +58,11 @@ public class EnemySpawner : MonoBehaviour
                         var tempX = SpawnPoints[index].transform.position.x + Random.Range(-SpawnXVariance,SpawnXVariance);
                         var tempZ = SpawnPoints[index].transform.position.z + Random.Range(-SpawnZVariance,SpawnZVariance);
                         var spawnLoc = new Vector3(tempX, player.position.y ,tempZ);
+
+                        GameObject next = Enemy[Random.Range(0,Enemy.Length)];
+                        if (next.name == "BigEnemy") {
+                            spawnLoc.y = 0.173f;
+                        }
                         GameObject enemy = Instantiate(Enemy[Random.Range(0,Enemy.Length)], spawnLoc,Quaternion.identity,transform);
                         TempWaveStrength -= 1;
                     }
