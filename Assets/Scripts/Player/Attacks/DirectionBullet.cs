@@ -10,6 +10,7 @@ public class DirectionBullet : MonoBehaviour
         
     }
 
+    [SerializeField] private float damage = 20;
     public float speed = 20;
     Vector3 directon;
 
@@ -28,6 +29,8 @@ public class DirectionBullet : MonoBehaviour
             Destroy(gameObject);
             //play particle effect
             //damage enemy
+            EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
+            enemy?.damage(damage);
         }
     }
     
