@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private UnityEvent m_Death = new UnityEvent();
 
     private float MAX_HEALTH = 3;
-    [SerializeField] private float currentHealth;
+    [SerializeField] public static float currentHealth;
 
     public RawImage hp;
     public Texture[] images;
