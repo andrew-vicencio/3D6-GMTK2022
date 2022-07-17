@@ -51,6 +51,11 @@ public class MovementController : MonoBehaviour
             movementLocked = false;
 
         }
+
+        if(dv.currentValue != 1 && charging){
+            charging = false;
+
+        }
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical"); 
         var cursorPos = Input.mousePosition;

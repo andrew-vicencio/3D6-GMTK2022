@@ -20,6 +20,9 @@ public class PlayerHealth : MonoBehaviour
 
     public GameObject deathEffect;
 
+    public Animator player;
+    public Animator rawImage;
+
     private void Awake() {
         currentHealth = MAX_HEALTH;
         hp.texture = images[(int)(currentHealth - 1)];
@@ -35,7 +38,8 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= damage;
         hp.texture = images[(int)(currentHealth - 1)];
-
+        player.SetTrigger("Hurt");
+        rawImage.SetTrigger("Hurt");
         if (currentHealth > 0) {
             changeDice.newValue();
         } else {
