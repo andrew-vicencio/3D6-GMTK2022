@@ -18,6 +18,8 @@ public class PlayerHealth : MonoBehaviour
 
     private ChangeDiceValue changeDice;
 
+    public GameObject deathEffect;
+
     private void Awake() {
         currentHealth = MAX_HEALTH;
         hp.texture = images[(int)(currentHealth - 1)];
@@ -37,7 +39,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth > 0) {
             changeDice.newValue();
         } else {
-            m_Death.Invoke();
+            Die();
         }
     }
 
@@ -47,7 +49,14 @@ public class PlayerHealth : MonoBehaviour
 
     public void Update() {
         if (currentHealth <= 0) {
-            m_Death.Invoke();
+            Die();
         }
+    }
+
+    public void Die(){
+            m_Death.Invoke();
+            Instantiate(deathEffect,transform.position,Quaternion.identity);
+            Destroy(gameObject);
+
     }
 }

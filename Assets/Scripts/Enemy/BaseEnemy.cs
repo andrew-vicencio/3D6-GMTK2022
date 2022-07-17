@@ -38,10 +38,14 @@ public class BaseEnemy : MonoBehaviour
     //         }
     //         // transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, 1f / acceleration, maxSpeed);
     //     }
-        Vector3 desired = (player.position - transform.position).normalized * maxSpeed;
-        desired.y = 0;
-        steer = (desired - rb.velocity).normalized * maxSpeed;
-    }
+        if (gameManager.running && player != null) {
+            Vector3 desired = (player.position - transform.position).normalized * maxSpeed;
+            desired.y = 0;
+            steer = (desired - rb.velocity).normalized * maxSpeed;
+        }
+        else if(player == null && gameManager.running){
+            player = GameObject.FindWithTag("Player").transform;
+        }
 
     private void LateUpdate() {
         rb.velocity += steer * Time.deltaTime;
